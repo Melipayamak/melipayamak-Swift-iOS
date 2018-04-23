@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Temperature Converter
-//
-//  Created by Farhad on 10/24/14.
-//  Copyright (c) 2014 Web In Dream. All rights reserved.
-//
-
 import UIKit
 
 //Step 1: Add protocol names that we will be delegating.
