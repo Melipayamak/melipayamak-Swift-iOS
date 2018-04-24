@@ -80,8 +80,8 @@ var soapClient = SoapClient(user: username, pass: password)
 #### ارسال
 
 ```js
-restClient.Send(to, from, text, isFlash)
-soapClient.SendSimpleSMS(arrayOf(to), from, text, isFlash)
+restClient.Send(to: to, from: from, msg: text, isFlash: isFlash)
+soapClient.SendSimpleSMS(array: [to1, to2], from: from, msg: text, isFlash: isFlash)
 ```
 <div dir='rtl'>
   در آرگومان سوم روش soap میتوانید از هر تعداد مخاطب به عنوان آرایه استفاده کنید
@@ -89,102 +89,102 @@ soapClient.SendSimpleSMS(arrayOf(to), from, text, isFlash)
 
 #### دریافت وضعیت ارسال
 ```js
-restClient.GetDelivery(recId)
-soapClient.GetDelivery(recId)
-soapClient.GetDeliveries(arrayOf(recIds))
+restClient.GetDelivery(id: recId)
+soapClient.GetDelivery(id: recId)
+soapClient.GetDeliveries(array: [id1, id2])
 ```
 
 #### لیست پیامک ها
 
 ```js
-restClient.GetMessages(location, index, count, from);
-soapClient.getMessages(location, from, index, count);
+restClient.GetMessages(loc: location, indx: index, cnt: count, from: from)
+soapClient.getMessages(loc: location, from: from, indx: index, cnt: count)
 // جهت دریافت به صورت رشته ای
-soapClient.GetMessagesByDate(location, from, index, count, dateFrom, dateTo);
+soapClient.GetMessagesByDate(loc: location, from: from, indx: index, cnt: count, dfrom: dateFrom, dto: dateTo)
 //جهت دریافت بر اساس تاریخ
-soapClient.GetUsersMessagesByDate(location, from, index, count, dateFrom, dateTo);
+soapClient.GetUsersMessagesByDate(loc: location, from: from, indx: index, cnt: count, dfrom: dateFrom, dto: dateTo)
 // جهت دریافت پیام های کاربران بر اساس تاریخ 
 ```
 
 #### موجودی
 ```js
-restClient.GetCredit();
-soapClient.GetCredit();
+restClient.GetCredit()
+soapClient.GetCredit()
 ```
 
 #### تعرفه پایه / دریافت قیمت قبل از ارسال
 ```js
-restClient.GetBasePrice();
-soapClient.GetSmsPrice(irancellCount, mtnCount, from, text);
+restClient.GetBasePrice()
+soapClient.GetSmsPrice(irancellCnt: irancellCount, mtnCnt: mtnCount, from: from, msg: text)
 ```
 #### لیست شماره اختصاصی
 ```js
-soapClient.GetUserNumbers();
+soapClient.GetUserNumbers()
 ```
 
 #### بررسی تعداد پیامک های دریافتی
 ```js
-soapClient.GetInboxCount(isRead);
+soapClient.GetInboxCount(isRead: isRead)
 //پیش فرض خوانده نشده 
 ```
 
 #### ارسال پیامک پیشرفته
 ```js
-soapClient.SendSms(arrayOf(to), from, text, isflash, udh, arrayOf(recId), arrayOf(status));
+soapClient.SendSms(arrayOfTo: [to1, to2], from: from, msg: text, isFlash: isflash, uhd: udh, arrayOfRecId: [id1, id2], arrayOfStatus: [st1, st2])
 ```
 
 #### مشاهده مشخصات پیام
 ```js
-soapClient.GetMessagesReceptions(msgId, fromRows);
+soapClient.GetMessagesReceptions(msgId: msgId, fromRows: fromRows)
 ```
 
 
 #### حذف پیام دریافتی
 ```js
-soapClient.RemoveMessages2(location, msgIds);
+soapClient.RemoveMessages2(loc: location, msgIds: msgIds)
 ```
 
 
 #### ارسال زماندار
 ```js
-soapClient.AddSchedule(to, from, text, isflash, scheduleDateTime, period);
+soapClient.AddSchedule(to: to, from: from, msg: text, isFlash: isflash, sdt: scheduleDateTime, prd: period)
 ```
 
 #### ارسال زماندار متناظر
 ```js
-soapClient.AddMultipleSchedule(arrayOf(to), from, arrayOf(text), isflash, arrayOf(scheduleDateTime), period);
+soapClient.AddMultipleSchedule(array: [to1, to2], from: from, arrayOfMsg: [msg1, msg2], isFlash: isflash, arrayOfSt: [sche1, sche2], prd: period)
 ```
 
 
 #### ارسال سررسید
 ```js
-soapClient.AddNewUsance(to, from, text, isflash, scheduleStartDateTime, countRepeat, scheduleEndDateTime, periodType);
+soapClient.AddNewUsance(to :to, from: from, msg: text, isFlash: isflash, ss: scheduleStartDateTime, cntrpt: countRepeat, se: scheduleEndDateTime, prdType: periodType)
 ```
 
 #### مشاهده وضعیت ارسال زماندار
 ```js
-soapClient.GetScheduleStatus(schId);
+soapClient.GetScheduleStatus(id: schId)
 ```
 
 #### حذف پیامک زماندار
 ```js
-soapClient.RemoveSchedule(schId);
+soapClient.RemoveSchedule(id: schId)
 ```
 
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```js
-soapClient.SendSMSWithSpeechText(smsBody, speechBody, from, to);
+soapClient.SendSMSWithSpeechText(body: smsBody, spch: speechBody, from: from, to: to)
 ```
 
 ####  ارسال پیامک همراه با تماس صوتی به صورت زمانبندی
 ```js
-soapClient.SendSMSWithSpeechTextBySchduleDate(smsBody, speechBody, from, to, scheduleDate);
+soapClient.SendSMSWithSpeechTextBySchduleDate(body: smsBody, spch: speechBody, from: from, to: to, sche: scheduleDate)
 ```
 
 ####  دریافت وضعیت پیامک همراه با تماس صوتی 
 ```js
-soapClient.GetSendSMSWithSpeechTextStatus(recId);
+soapClient.GetSendSMSWithSpeechTextStatus(id: recId)
 ```
 <div dir='rtl'>
   
@@ -194,71 +194,71 @@ soapClient.GetSendSMSWithSpeechTextStatus(recId);
 
 #### دریافت شناسه شاخه های بانک شماره
 ```js
-soapClient.GetBranchs(owner);
+soapClient.GetBranchs(owner: owner)
 ```
 
 
 #### اضافه کردن یک بانک شماره جدید
 ```js
-soapClient.AddBranch(branchName, owner);
+soapClient.AddBranch(name: branchName, owner: owner)
 ```
 
 #### اضافه کردن شماره به بانک
 ```js
-soapClient.AddNumber(branchId, arrayOf(mobileNumbers));
+soapClient.AddNumber(id: branchId, array: [num1, num2])
 ```
 
 #### حذف یک بانک
 ```js
-soapClient.RemoveBranch(branchId);
+soapClient.RemoveBranch(id: branchId)
 ```
 
 #### ارسال انبوه از طریق بانک
 ```js
-soapClient.AddBulk(from, branch, bulkType, title, message, rangeFrom, rangeTo, DateToSend, requestCount, rowFrom);
+soapClient.AddBulk(from: from, branch: branch, bulkType: bulkType, title: title, msg: message, rangeF: rangeFrom, rangeT: rangeTo, date: DateToSend, reqCnt: requestCount, rowFrom: rowFrom)
 ```
 
 #### تعداد شماره های موجود
 ```js
-soapClient.GetBulkCount(branch, rangeFrom, rangeTo);
+soapClient.GetBulkCount(branch: branch, rangeF: rangeFrom, rangeT: rangeTo)
 ```
 
 #### گزارش گیری از ارسال انبوه
 ```js
-soapClient.GetBulkReceptions(bulkId, fromRows);
+soapClient.GetBulkReceptions(id: bulkId, fromRows: fromRows)
 ```
 
 
 #### تعیین وضعیت ارسال 
 ```js
-soapClient.GetBulkStatus(bulkId, sent, failed, status);
+soapClient.GetBulkStatus(id: bulkId, sent: sent, failed: failed, status: status)
 ```
 
 #### تعداد ارسال های امروز
 ```js
-soapClient.GetTodaySent();
+soapClient.GetTodaySent()
 ```
 
 #### تعداد ارسال های کل
 
 ```js
-soapClient.GetTotalSent();
+soapClient.GetTotalSent()
 ```
 
 #### حذف ارسال منطقه ای
 ```js
-soapClient.RemoveBulk(bulkId);
+soapClient.RemoveBulk(id: bulkId)
 ```
 
 #### ارسال متناظر
 ```js
-soapClient.SendMultipleSMS(arrayOf(to), from, arrayOf(text), isflash, udh, arrayOf(recId), status);
+soapClient.SendMultipleSMS(array: [to1, to2], from: from, arrayOfMsg: [msg1, msg2], isFlash: isflash, uhd: udh, arrayOfRecIds: [id1, id2], status: status)
 ```
 
 #### نمایش دهنده وضعیت گزارش گیری
 
 ```js
-soapClient.UpdateBulkDelivery(bulkId);
+soapClient.UpdateBulkDelivery(id: bulkId)
 ```
 <div dir='rtl'>
   
@@ -268,34 +268,34 @@ soapClient.UpdateBulkDelivery(bulkId);
 
 #### ثبت تیکت جدید
 ```js
-soapClient.AddTicket(title, content, aletWithSms);
+soapClient.AddTicket(title: title, content: content, alert: aletWithSms)
 ```
 
 #### جستجو و دریافت تیکت ها
 
 ```js
-soapClient.GetReceivedTickets(ticketOwner, ticketType, keyword);
+soapClient.GetReceivedTickets(owner: ticketOwner, type: ticketType, keyword: keyword)
 ```
 
 #### دریافت تعداد تیکت های کاربران
 ```js
-soapClient.GetReceivedTicketsCount(ticketType);
+soapClient.GetReceivedTicketsCount(type: ticketType)
 ```
 
 #### دریافت تیکت های ارسال شده
 ```js
-soapClient.GetSentTickets(ticketOwner, ticketType, keyword);
+soapClient.GetSentTickets(owner: ticketOwner, type: ticketType, keyword: keyword)
 ```
 
 #### دریافت تعداد تیکت های ارسال شده
 ```js
-soapClient.GetSentTicketsCount(ticketType);
+soapClient.GetSentTicketsCount(type: ticketType)
 ```
 
 
 #### پاسخگویی به تیکت
 ```js
-soapClient.ResponseTicket(ticketId, type, content, alertWithSms);
+soapClient.ResponseTicket(id: ticketId, type: type, content: content, alert: alertWithSms)
 ```
 <div dir='rtl'>
   
@@ -305,40 +305,40 @@ soapClient.ResponseTicket(ticketId, type, content, alertWithSms);
 
 #### اضافه کردن گروه جدید
 ```js
-soapClient.AddGroup(groupName, Descriptions, showToChilds);
+soapClient.AddGroup(name: groupName, desc: Descriptions, show: showToChilds)
 ```
 
 #### اضافه کردن کاربر جدید
 ```js
-soapClient.AddContact(options);
+soapClient.AddContact(options)
 
 ```
 
 #### بررسی موجود بودن شماره در دفترچه تلفن
 ```js
-soapClient.CheckMobileExistInContact(mobileNumber);
+soapClient.CheckMobileExistInContact(number: mobileNumber)
 ```
 
 #### دریافت اطلاعات دفترچه تلفن
 ```js
-soapClient.GetContacts(groupId, keyword, count);
+soapClient.GetContacts(id: groupId, keyword: keyword, cnt: count)
 ```
 #### دریافت گروه ها
 ```js
-soapClient.GetGroups();
+soapClient.GetGroups()
 ```
 #### ویرایش مخاطب
 ```js
-soapClient.ChangeContact(options);
+soapClient.ChangeContact(options)
 ```
 
 #### حذف مخاطب
 ```js
-soapClient.RemoveContact(mobilenumber);
+soapClient.RemoveContact(number: mobilenumber)
 ```
 #### دریافت اطلاعات مناسبت های فرد
 ```js
-soapClient.GetContactEvents(contactId);
+soapClient.GetContactEvents(id: contactId)
 ```
 
 <div dir='rtl'>
@@ -349,92 +349,92 @@ soapClient.GetContactEvents(contactId);
 
 #### ثبت فیش واریزی
 ```js
-soapClient.AddPayment(options);
+soapClient.AddPayment(options)
 ```
 
 #### اضافه کردن کاربر جدید در سامانه
 ```js
-soapClient.AddUser(options);
+soapClient.AddUser(options)
 
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(کامل)
 ```js
-soapClient.AddUserComplete(options);
+soapClient.AddUserComplete(options)
 ```
 
 #### اضافه کردن کاربر جدید در سامانه(WithLocation)
 ```js
-soapClient.AddUserWithLocation(options);
+soapClient.AddUserWithLocation(options)
 ```
 #### بدست آوردن ID کاربر
 ```js
-soapClient.AuthenticateUser();
+soapClient.AuthenticateUser()
 ```
 #### تغییر اعتبار
 ```js
-soapClient.ChangeUserCredit(amount, description, targetUsername, GetTax);
+soapClient.ChangeUserCredit(amount: amount, desc: description, user: targetUsername, gTax: GetTax)
 ```
 
 #### فراموشی رمز عبور
 ```js
-soapClient.ForgotPassword(mobileNumber, emailAddress, targetUsername);
+soapClient.ForgotPassword(number: mobileNumber, email: emailAddress, user: targetUsername)
 ```
 #### دریافت تعرفه پایه کاربر
 ```js
-soapClient.GetUserBasePrice(targetUsername);
+soapClient.GetUserBasePrice(user: targetUsername)
 ```
 
 #### دریافت اعتبار کاربر
 ```js
-soapClient.GetUserCredit(targetUsername);
+soapClient.GetUserCredit(user: targetUsername)
 ```
 
 #### دریافت مشخصات کاربر
 ```js
-soapClient.GetUserDetails(targetUsername);
+soapClient.GetUserDetails(user: targetUsername)
 ```
 
 #### دریافت شماره های کاربر
 ```js
-soapClient.GetUserNumbers();
+soapClient.GetUserNumbers()
 ```
 
 #### دریافت تراکنش های کاربر
 ```js
-soapClient.GetUserTransactions(targetUsername, creditType, dateFrom, dateTo, keyword);
+soapClient.GetUserTransactions(user: targetUsername, creditType: creditType, dateF: dateFrom, dateT: dateTo, keyword: keyword)
 ```
 
 #### دریافت اطلاعات  کاربران
 ```js
-soapClient.GetUsers();
+soapClient.GetUsers()
 ```
 
 
 #### دریافت اطلاعات  فیلترینگ
 ```js
-soapClient.HasFilter(text);
+soapClient.HasFilter(txt: text)
 ```
 
 
 ####  حذف کاربر
 ```js
-soapClient.RemoveUser(targetUsername);
+soapClient.RemoveUser(user: targetUsername)
 ```
 
 
 #### مشاهده استان ها
 ```js
-soapClient.GetProvinces();
+soapClient.GetProvinces()
 ```
 
 #### مشاهده کد شهرستان 
 ```js
-soapClient.GetCities(provinceId);
+soapClient.GetCities(id: provinceId)
 ```
 
 
 #### مشاهده تاریخ انقضای کاربر 
 ```js
-soapClient.GetExpireDate();
+soapClient.GetExpireDate()
 ```
