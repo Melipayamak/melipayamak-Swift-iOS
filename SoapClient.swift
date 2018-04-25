@@ -1,21 +1,31 @@
+//
+//  SoapClient.swift
+//  MeliPayamak
+//
+//  Created by Amirhossein Mehrvarzi on 4/25/18.
+//  Copyright © 2018 MeliPayamak. All rights reserved.
+//
+
+import Foundation
+
 import UIKit
 
 //Add protocol names that we will be delegating.
-class soapClient : NSURLConnectionDelegate, NSXMLParserDelegate {
+class soapClient : NSObject, NSURLConnectionDelegate,NSURLConnectionDataDelegate,  XMLParserDelegate {
     
     var mutableData:NSMutableData  = NSMutableData()
     var currentElementName:String = ""  //to match inner xml tag (response)
     var response : String = ""
-
+    
     var username: String
     var password: String
-
+    
     init(user: String, pass: String) {
         self.username = user
         self.password = pass
     }
-
-
+    
+    
     func SendSimpleSMS2(to: String, from: String, msg: String, isFlash: Bool) {
         
         //copy related soap request structure here
@@ -36,9 +46,9 @@ class soapClient : NSURLConnectionDelegate, NSXMLParserDelegate {
         
         let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
         
-        connection!.start()    
+        connection!.start()
     }
-
+    
     // NSURLConnectionDelegate
     // NSURL
     
@@ -53,8 +63,8 @@ class soapClient : NSURLConnectionDelegate, NSXMLParserDelegate {
     func connection(_ connection: NSURLConnection, didReceive data: Data) {
         self.mutableData.append(data)
     }
-
-
+    
+    
     
     // NSXMLParserDelegate
     
@@ -64,11 +74,11 @@ class soapClient : NSURLConnectionDelegate, NSXMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if currentElementName == "SendSimpleSMS2Result" { //name of inner <tag> in soap response 
+        if currentElementName == "SendSimpleSMS2Result" { //name of inner <tag> in soap response
             response = string
         }
     }
-   
+    
     
     func connectionDidFinishLoading(_ connection: NSURLConnection) {
         
@@ -77,5 +87,5 @@ class soapClient : NSURLConnectionDelegate, NSXMLParserDelegate {
         xmlParser.parse()
         xmlParser.shouldResolveExternalEntities = true
     }
-
+    
 }
