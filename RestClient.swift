@@ -8,8 +8,10 @@
 
 import Foundation
 
-class RestClient
+class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate
 {
+    var mutableData:NSMutableData  = NSMutableData()
+    
     let endpoint: String  = "https://rest.payamak-panel.com/api/SendSMS/"
     let sendOp: String = "SendSMS"
     
@@ -44,6 +46,34 @@ class RestClient
     
     connection!.start()
 
+    }
+    
+    
+    
+    
+    // NSURLConnectionDelegate
+    
+    // NSURL
+    
+    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
+        print("connection error = \(error)")
+    }
+    
+    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
+        mutableData = NSMutableData()
+    }
+    
+    
+    func connection(_ connection: NSURLConnection, didReceive data: Data) {
+        self.mutableData.append(data)
+    }
+    
+    
+    func connectionDidFinishLoading(_ connection: NSURLConnection) {
+       
+        let response : RestResponse = RestResponse(mutableData: mutableData)
+        print("response memeber is : \(response.StrRetStatus)")
+       
     }
     
     
