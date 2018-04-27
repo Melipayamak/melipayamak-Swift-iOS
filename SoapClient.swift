@@ -10,8 +10,7 @@ import Foundation
 
 import UIKit
 
-//Add protocol names that we will be delegating.
-class soapClient : NSObject, NSURLConnectionDelegate,NSURLConnectionDataDelegate,  XMLParserDelegate {
+class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate,  XMLParserDelegate {
     
     var mutableData:NSMutableData  = NSMutableData()
     var currentElementName:String = ""  //to match inner xml tag (response)
@@ -50,7 +49,6 @@ class soapClient : NSObject, NSURLConnectionDelegate,NSURLConnectionDataDelegate
     }
     
     // NSURLConnectionDelegate
-    // NSURL
     
     func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         print("connection error = \(error)")
@@ -67,7 +65,6 @@ class soapClient : NSObject, NSURLConnectionDelegate,NSURLConnectionDataDelegate
     
     
     // NSXMLParserDelegate
-    
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         currentElementName = elementName
