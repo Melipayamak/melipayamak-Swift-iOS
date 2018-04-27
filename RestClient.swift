@@ -53,8 +53,6 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     
     // NSURLConnectionDelegate
     
-    // NSURL
-    
     func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         print("connection error = \(error)")
     }
