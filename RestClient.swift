@@ -21,8 +21,8 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     let getBasePriceOp: String = "GetBasePrice"
     let getUserNumbersOp: String = "GetUserNumbers"
     
-    let UserName: String;
-    let Password: String;
+    let UserName: String
+    let Password: String
     
     init(user: String, pass: String){
         self.UserName = user
@@ -30,11 +30,31 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     }
     
     func Send(to: String, from: String, message: String, isflash: Bool)
-{
+    {
 
     let values = "username=\(self.UserName)&password=\(self.Password)&to=\(to)&from=\(from)&text=\(message)&isFlash=\(isflash.description)"
     
-    let url = URL(string: endpoint)
+    let url = URL(string: endpoint + sendOp)
+    
+    let theRequest = NSMutableURLRequest(url: url!)
+    
+    theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    theRequest.httpMethod = "POST"
+    theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+    
+    connection!.start()
+
+    }
+
+
+    func GetDelivery(Int32 recid)
+    {
+
+    let values = "username=\(self.UserName)&password=\(self.Password)&recID=\(recid)"
+    
+    let url = URL(string: endpoint + getDeliveryOp)
     
     let theRequest = NSMutableURLRequest(url: url!)
     
@@ -48,8 +68,85 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
 
     }
     
+    //
+    func GetMessages(Int location, String from, String index, Int count)
+    {
+
+    let values = "username=\(self.UserName)&password=\(self.Password)&Location=\(location)&From=\(from)&Index=\(index)&Count=\(count)"
     
+    let url = URL(string: endpoint + getMessagesOp)
     
+    let theRequest = NSMutableURLRequest(url: url!)
+    
+    theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    theRequest.httpMethod = "POST"
+    theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+    
+    connection!.start()
+
+    }
+
+    func GetCredit()
+    {
+
+    let values = "username=\(self.UserName)&password=\(self.Password)"
+    
+    let url = URL(string: endpoint + getCreditOp)
+    
+    let theRequest = NSMutableURLRequest(url: url!)
+    
+    theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    theRequest.httpMethod = "POST"
+    theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+    
+    connection!.start()
+
+    }
+
+    func GetBasePrice()
+    {
+
+    let values = "username=\(self.UserName)&password=\(self.Password)"
+    
+    let url = URL(string: endpoint + getBasePriceOp)
+    
+    let theRequest = NSMutableURLRequest(url: url!)
+    
+    theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    theRequest.httpMethod = "POST"
+    theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+    
+    connection!.start()
+
+    }
+
+    func GetUserNumbers()
+    {
+
+    let values = "username=\(self.UserName)&password=\(self.Password)"
+    
+    let url = URL(string: endpoint + getUserNumbersOp)
+    
+    let theRequest = NSMutableURLRequest(url: url!)
+    
+    theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    theRequest.httpMethod = "POST"
+    theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+    
+    connection!.start()
+
+    }
+
+
+
     
     // NSURLConnectionDelegate
     
@@ -70,7 +167,7 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     func connectionDidFinishLoading(_ connection: NSURLConnection) {
        
         let response : RestResponse = RestResponse(mutableData: mutableData)
-        print("response memeber is : \(response.StrRetStatus)")
+        print("status is : \(response.StrRetStatus)")
        
     }
     
