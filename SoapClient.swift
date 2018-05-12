@@ -60,7 +60,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><SendSimpleSMS2 xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(msg)</text><isflash>\(isFlash)</isflash></SendSimpleSMS2></soap:Body></soap:Envelope>"
         expectedElementName = "SendSimpleSMS2Result"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func SendSimpleSMS(to: [String], from: String, msg: String, isFlash: Bool) {
@@ -73,7 +73,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><SendSimpleSMS xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(_to)</to><from>\(from)</from><text>\(msg)</text><isflash>\(isFlash)</isflash></SendSimpleSMS></soap:Body></soap:Envelope>"
         expectedElementName = "SendSimpleSMSResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func SendSms(to: [String], from: String, msg: String, isFlash: Bool, udh: String, recid: [Int64]) {
@@ -88,7 +88,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><SendSms xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(_to)</to><from>\(from)</from><text>\(msg)</text><isflash>\(isFlash)</isflash><udh>\(udh)</udh><recId>\(_recid)</recId><status></status></SendSms></soap:Body></soap:Envelope>"
         expectedElementName = "SendSmsResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func SendWithDomain(to: String, from: String, msg: String, isFlash: Bool, domain: String) {
@@ -97,7 +97,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><SendWithDomain xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(msg)</text><isflash>\(isFlash)</isflash><domainName>\(domain)</domainName></SendWithDomain></soap:Body></soap:Envelope>"
         expectedElementName = "SendWithDomainResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func getMessages(location: Int, from: String, index: Int, count: Int) {
@@ -106,7 +106,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><getMessages xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count></getMessages></soap:Body></soap:Envelope>"
         expectedElementName = "getMessagesResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func GetSmsPrice(irancellCount: Int, mtnCount: Int, from: String, text: String) {
@@ -115,7 +115,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetSmsPrice xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><irancellCount>\(irancellCount)</irancellCount><mtnCount>\(mtnCount)</mtnCount><from>\(from)</from><text>\(text)</text></GetSmsPrice></soap:Body></soap:Envelope>"
         expectedElementName = "GetSmsPriceResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func GetMultiDelivery2(recId: String) {
@@ -124,7 +124,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMultiDelivery2 xmlns='http://tempuri.org/'><recId>\(recId)</recId></GetMultiDelivery2></soap:Body></soap:Envelope>"
         expectedElementName = "GetMultiDelivery2Response"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }    
 
     func GetMultiDelivery(recId: String) {
@@ -133,7 +133,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMultiDelivery xmlns='http://tempuri.org/'><recId>\(recId)</recId></GetMultiDelivery></soap:Body></soap:Envelope>"
         expectedElementName = "GetMultiDeliveryResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     } 
 
     func GetInboxCount(isRead: Bool) {
@@ -142,7 +142,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetInboxCount xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><isRead>\(isRead)</isRead></GetInboxCount></soap:Body></soap:Envelope>"
         expectedElementName = "GetInboxCountResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
 
     func GetDelivery2(recId: String) {
@@ -151,7 +151,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDelivery2 xmlns='http://tempuri.org/'><recId>\(recId)</recId></GetDelivery2></soap:Body></soap:Envelope>"
         expectedElementName = "GetDelivery2Response"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     } 
 
     func GetDelivery(recId: Int64) {
@@ -160,7 +160,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDelivery xmlns='http://tempuri.org/'><recId>\(recId)</recId></GetDelivery></soap:Body></soap:Envelope>"
         expectedElementName = "GetDeliveryResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     } 
 
     func GetDeliveries3(recIds: [String]) {
@@ -171,7 +171,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDeliveries3 xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><recId>\(_recids)</recId></GetDeliveries3></soap:Body></soap:Envelope>"
         expectedElementName = "GetDeliveries3Response"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }   
 
     func GetDeliveries2(recId: String) {
@@ -180,7 +180,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDeliveries2 xmlns='http://tempuri.org/'><recId>\(recId)</recId></GetDeliveries2></soap:Body></soap:Envelope>"
         expectedElementName = "GetDeliveries2Response"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }    
 
     func GetDeliveries(recIds: [Int64]) {
@@ -191,7 +191,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDeliveries xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><recIds>\(_recids)</recIds></GetDeliveries></soap:Body></soap:Envelope>"
         expectedElementName = "GetDeliveriesResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     } 
 
     func GetCredit() {
@@ -200,7 +200,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetCredit xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></GetCredit></soap:Body></soap:Envelope>"
         expectedElementName = "GetCreditResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }     
 
     //Receive API Operations
@@ -210,7 +210,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><RemoveMessages2 xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><msgIds>\(msgIds)</msgIds></RemoveMessages2></soap:Body></soap:Envelope>"
         expectedElementName = "RemoveMessages2Response"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }  
     //use Received or Sent or Removed or Deleted for location in the next method
     func RemoveMessages(location: String, msgIds: String) {
@@ -219,7 +219,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><RemoveMessages xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><msgIds>\(msgIds)</msgIds></RemoveMessages></soap:Body></soap:Envelope>"
         expectedElementName = "RemoveMessagesResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }  
 
     func GetUsersMessagesByDate(location: Int, from: String, index: Int, count: Int, dateFrom: Date, dateTo: Date) {
@@ -228,7 +228,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetUsersMessagesByDate xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><dateFrom>\(dateFrom)</dateFrom><dateTo>\(dateTo)</dateTo></GetUsersMessagesByDate></soap:Body></soap:Envelope>"
         expectedElementName = "GetUsersMessagesByDateResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetOutBoxCount() {
@@ -237,7 +237,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetOutBoxCount xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></GetOutBoxCount></soap:Body></soap:Envelope>"
         expectedElementName = "GetOutBoxCountResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetMessagesWithChangeIsRead(location: Int, from: String, index: Int, count: Int, isRead: Bool, changeIsRead: Bool) {
@@ -246,7 +246,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesWithChangeIsRead xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><isRead>\(isRead)</isRead><changeIsRead>\(changeIsRead)</changeIsRead></GetMessagesWithChangeIsRead></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesWithChangeIsReadResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetMessagesReceptions(msgId: Int, fromRows: Int) {
@@ -255,7 +255,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesReceptions xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><msgId>\(msgId)</msgId><fromRows>\(fromRows)</fromRows></GetMessagesReceptions></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesReceptionsResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetMessagesFilterByDate(location: Int, from: String, index: Int, count: Int, dateFrom: Date, dateTo: Date, isRead: Bool) {
@@ -264,7 +264,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesFilterByDate xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><dateFrom>\(dateFrom)</dateFrom><dateTo>\(dateTo)</dateTo><isRead>\(isRead)</isRead></GetMessagesFilterByDate></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesFilterByDateResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetMessagesByDate(location: Int, from: String, index: Int, count: Int, dateFrom: Date, dateTo: Date) {
@@ -273,7 +273,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesByDate xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><dateFrom>\(dateFrom)</dateFrom><dateTo>\(dateTo)</dateTo></GetMessagesByDate></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesByDateResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
     func GetMessagesAfterIDJson(location: Int, from: String, count: Int, msgId: Int) {
@@ -282,7 +282,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterIDJson xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterIDJson></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesAfterIDJsonResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }   
 
     func GetMessagesAfterID(location: Int, from: String, count: Int, msgId: Int) {
@@ -291,7 +291,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterID xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterID></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesAfterIDResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }      
 
     func GetMessages(location: Int, from: String, index: Int, count: Int) {
@@ -300,7 +300,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessages xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count></GetMessages></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }
 
     func GetMessageStr(location: Int, from: String, index: Int, count: Int) {
@@ -309,7 +309,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessageStr xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count></GetMessageStr></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessageStrResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }
 
     func GetInboxCount(isRead: Bool) {
@@ -318,7 +318,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetInboxCount xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><isRead>\(isRead)</isRead></GetInboxCount></soap:Body></soap:Envelope>"
         expectedElementName = "GetInboxCountResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     }
 
     func ChangeMessageIsRead(msgIds: String) {
@@ -327,7 +327,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><ChangeMessageIsRead xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><msgIds>\(msgIds)</msgIds></ChangeMessageIsRead></soap:Body></soap:Envelope>"
         expectedElementName = "ChangeMessageIsReadResponse"
         //use related webservice url here
-        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage);
+        initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
     } 
 
 
