@@ -58,7 +58,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         
         //copy related soap request structure here
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><SendSimpleSMS2 xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(msg)</text><isflash>\(isFlash)</isflash></SendSimpleSMS2></soap:Body></soap:Envelope>"
-        expectedElementName = "SendSimpleSMS2Result"
+        expectedElementName = "SendSimpleSMS2Response"
         //use related webservice url here
         initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
     }
@@ -185,8 +185,9 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
 
     func GetDeliveries(recIds: [Int64]) {
         
+        var recidAsStringArray = recIds.map { String($0) }
         let longSplitter = "</long><long>"
-        _recids = "<long>" + recIds.joined(separator: longSplitter) + "</long>"
+        _recids = "<long>" + recidAsStringArray.joined(separator: longSplitter) + "</long>"
         //copy related soap request structure here
         let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetDeliveries xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><recIds>\(_recids)</recIds></GetDeliveries></soap:Body></soap:Envelope>"
         expectedElementName = "GetDeliveriesResponse"
@@ -643,7 +644,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         
         //copy related soap request structure here
         let sendingElementName = "ChangeGroup"
-        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><groupId>\(groupId)<groupId><groupName>\(groupName)</groupName><Descriptions>\(Descriptions)</Descriptions><showToChilds>\(showToChilds)</showToChilds><groupStatus>\(groupStatus)</groupStatus></\(sendingElementName)></soap:Body></soap:Envelope>"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><groupId>\(groupId)</groupId><groupName>\(groupName)</groupName><Descriptions>\(Descriptions)</Descriptions><showToChilds>\(showToChilds)</showToChilds><groupStatus>\(groupStatus)</groupStatus></\(sendingElementName)></soap:Body></soap:Envelope>"
         expectedElementName = "ChangeGroupResponse"
         //use related webservice url here
         initAndSendRequest(endpoint: _contactsEndpoint, message: soapMessage)
@@ -749,6 +750,240 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         //use related webservice url here
         initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
     }
+    func AddBulk2(from: String, branch: Int, bulkType: Byte, title: String, message: String, rangeFrom: String, rangeTo: String, DateToSend: String, requestCount: Int, rowFrom: Int) {
+        
+        //copy related soap request structure here
+        let sendingElementName = "AddBulk2"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><from>\(from)</from><branch>\(branch)</branch><bulkType>\(bulkType)</bulkType><title>\(title)</title><message>\(message)</message><rangeFrom>\(rangeFrom)</rangeFrom><rangeTo>\(rangeTo)</rangeTo><DateToSend>\(DateToSend)</DateToSend><requestCount>\(requestCount)</requestCount><rowFrom>\(rowFrom)</rowFrom></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddBulk2Response"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func AddNewBulk(from: String, branch: Int, bulkType: Byte, title: String, message: String, rangeFrom: String, rangeTo: String, DateToSend: Date, requestCount: Int, rowFrom: Int) {
+        
+        //copy related soap request structure here
+        let sendingElementName = "AddNewBulk"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><from>\(from)</from><branch>\(branch)</branch><bulkType>\(bulkType)</bulkType><title>\(title)</title><message>\(message)</message><rangeFrom>\(rangeFrom)</rangeFrom><rangeTo>\(rangeTo)</rangeTo><DateToSend>\(DateToSend)</DateToSend><requestCount>\(requestCount)</requestCount><rowFrom>\(rowFrom)</rowFrom></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddNewBulkResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func AddNumber(branchId: Int, mobileNumbers: [String]) {
+        
+        let stringSplitter = "</string><string>"
+        _mobileNumbers = "<string>" + mobileNumbers.joined(separator: stringSplitter) + "</string>"
+        //copy related soap request structure here
+        let sendingElementName = "AddNumber"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><branchId>\(branchId)</branchId><mobileNumbers>\(_mobileNumbers)</mobileNumbers></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddNumberResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetBranchs(owner: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "GetBranchs"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><owner>\(owner)</owner></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetBranchsResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetBulk() {
+        //copy related soap request structure here
+        let sendingElementName = "GetBulk"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetBulkResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetBulkCount(branch: Int, rangeFrom: String, rangeTo: String) {
+        //copy related soap request structure here
+        let sendingElementName = "GetBulkCount"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><branch>\(branch)</branch><rangeFrom>\(rangeFrom)</rangeFrom><rangeTo>\(rangeTo)</rangeTo></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetBulkCountResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetBulkReceptions(bulkId: Int, fromRows: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "GetBulkReceptions"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><bulkId>\(bulkId)</bulkId><fromRows>\(fromRows)</fromRows></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetBulkReceptionsResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetBulkStatus(bulkId: Int, sent: Int, failed: Int, status: Byte) {
+        //copy related soap request structure here
+        let sendingElementName = "GetBulkStatus"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><bulkId>\(bulkId)</bulkId><sent>\(sent)</sent><failed>\(failed)</failed><status>\(status)</status></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetBulkStatusResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetMessagesReceptions(msgId: Int64, fromRows: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "GetMessagesReceptions"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><msgId>\(msgId)</msgId><fromRows>\(fromRows)</fromRows></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetMessagesReceptionsResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetMobileCount(branch: Int, rangeFrom: String, rangeTo: String) {
+        //copy related soap request structure here
+        let sendingElementName = "GetMobileCount"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><branch>\(branch)</branch><rangeFrom>\(rangeFrom)</rangeFrom><rangeTo>\(rangeTo)</rangeTo></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetMobileCountResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetSendBulk() {
+        //copy related soap request structure here
+        let sendingElementName = "GetSendBulk"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetSendBulkResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetTodaySent() {
+        //copy related soap request structure here
+        let sendingElementName = "GetTodaySent"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetTodaySentResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func GetTotalSent() {
+        //copy related soap request structure here
+        let sendingElementName = "GetTotalSent"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetTotalSentResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func RemoveBranch(branchId: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "RemoveBranch"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><branchId>\(branchId)</branchId></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "RemoveBranchResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func RemoveBulk(bulkId: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "RemoveBulk"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><bulkId>\(bulkId)</bulkId></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "RemoveBulkResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func SendMultipleSMS(to: [String], from: String, text: [String], isflash: Bool, udh: String, recId: [Int64], status: String) {
+        var recidAsStringArray = recId.map { String($0) }
+
+        let stringSplitter = "</string><string>"
+        let longSplitter = "</long><long>"
+        _to = "<string>" + to.joined(separator: stringSplitter) + "</string>"
+        _text = "<string>" + text.joined(separator: stringSplitter) + "</string>"
+        _recId = "<long>" + recidAsStringArray.joined(separator: longSplitter) + "</long>"
+        //copy related soap request structure here
+        let sendingElementName = "SendMultipleSMS"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(_to)</to><from>\(from)</from><text>\(_text)</text><isflash>\(isflash)</isflash><udh>\(udh)</udh><recId>\(_recId)</recId><status>\(status)</status></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "SendMultipleSMSResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+   func SendMultipleSMS2(to: [String], from: [String], text: [String], isflash: Bool, udh: String, recId: [Int64], status: String) {
+        var recidAsStringArray = recId.map { String($0) }
+
+        let stringSplitter = "</string><string>"
+        let longSplitter = "</long><long>"
+        _to = "<string>" + to.joined(separator: stringSplitter) + "</string>"
+        _text = "<string>" + text.joined(separator: stringSplitter) + "</string>"
+        _from = "<string>" + from.joined(separator: stringSplitter) + "</string>"
+        _recId = "<long>" + recidAsStringArray.joined(separator: longSplitter) + "</long>"
+        //copy related soap request structure here
+        let sendingElementName = "SendMultipleSMS2"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(_to)</to><from>\(_from)</from><text>\(_text)</text><isflash>\(isflash)</isflash><udh>\(udh)</udh><recId>\(_recId)</recId><status>\(status)</status></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "SendMultipleSMS2Response"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+    func UpdateBulkDelivery(bulkId: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "UpdateBulkDelivery"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><bulkId>\(bulkId)</bulkId></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "UpdateBulkDeliveryResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _actionsEndpoint, message: soapMessage)
+    }
+
+    //Schedule API Operations
+    func AddMultipleSchedule(to: [String], from: String, text: [String], isflash: Bool, scheduleDateTime: [Date], period: String) {
+        var dateStringArray = scheduleDateTime.map { dateToString($0, "YY/MM/dd") }
+
+        let stringSplitter = "</string><string>"
+        let dateSplitter = "</dateTime><dateTime>"
+        _to = "<string>" + to.joined(separator: stringSplitter) + "</string>"
+        _text = "<string>" + text.joined(separator: stringSplitter) + "</string>"
+        _schDates = "<dateTime>" + dateStringArray.joined(separator: dateSplitter) + "</dateTime>"
+        //copy related soap request structure here
+        let sendingElementName = "AddMultipleSchedule"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(_to)</to><from>\(from)</from><text>\(_text)</text><isflash>\(isflash)</isflash><scheduleDateTime>\(_schDates)</scheduleDateTime><period>\(period)</period></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddMultipleScheduleResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }    
+    func AddNewUsance(to: String, from: String, text: String, isflash: Bool, scheduleStartDateTime: Date, countrepeat: Int, scheduleEndDateTime: Date, periodType: String) {
+        //copy related soap request structure here
+        let sendingElementName = "AddNewUsance"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(text)</text><isflash>\(isflash)</isflash><scheduleStartDateTime>\(scheduleStartDateTime)</scheduleStartDateTime><countrepeat>\(countrepeat)</countrepeat><periodType>\(periodType)</periodType></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddNewUsanceResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }    
+    func AddSchedule(to: String, from: String, text: String, isflash: Bool, scheduleDateTime: Date, period: String) {
+        //copy related soap request structure here
+        let sendingElementName = "AddSchedule"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(text)</text><isflash>\(isflash)</isflash><scheduleDateTime>\(scheduleDateTime)</scheduleDateTime><period>\(period)</period></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddScheduleResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }  
+    func AddUsance(to: String, from: String, text: String, isflash: Bool, scheduleStartDateTime: Date, repeatAfterDays: Int, scheduleEndDateTime: Date) {
+        //copy related soap request structure here
+        let sendingElementName = "AddUsance"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><to>\(to)</to><from>\(from)</from><text>\(text)</text><isflash>\(isflash)</isflash><scheduleStartDateTime>\(scheduleStartDateTime)</scheduleStartDateTime><repeatAfterDays>\(repeatAfterDays)</repeatAfterDays><scheduleEndDateTime>\(scheduleEndDateTime)</scheduleEndDateTime></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "AddUsanceResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }    
+    func GetScheduleStatus(scheduleId: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "GetScheduleStatus"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><scheduleId>\(scheduleId)</scheduleId></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "GetScheduleStatusResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }    
+    func RemoveSchedule(scheduleId: Int) {
+        //copy related soap request structure here
+        let sendingElementName = "RemoveSchedule"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><scheduleId>\(scheduleId)</scheduleId></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "RemoveScheduleResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }   
+    func RemoveScheduleList(scheduleIdList: [Int]) {
+        var listAsStringArray = scheduleIdList.map { String($0) }
+
+        let intSplitter = "</int><int>"
+        _list = "<int>" + listAsStringArray.joined(separator: stringSplitter) + "</int>"
+        //copy related soap request structure here
+        let sendingElementName = "RemoveScheduleList"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(sendingElementName) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><scheduleIdList>\(scheduleIdList)</scheduleIdList></\(sendingElementName)></soap:Body></soap:Envelope>"
+        expectedElementName = "RemoveScheduleListResponse"
+        //use related webservice url here
+        initAndSendRequest(endpoint: _scheduleEndpoint, message: soapMessage)
+    }   
+
 
     // NSURLConnectionDelegate
     
@@ -787,4 +1022,9 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         xmlParser.shouldResolveExternalEntities = true
     }
     
+    func dateToString(date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date)
+    }
 }
