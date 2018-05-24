@@ -280,7 +280,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     func GetMessagesAfterIDJson(location: Int, from: String, count: Int, msgId: Int) {
         
         //copy related soap request structure here
-        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterIDJson xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterIDJson></soap:Body></soap:Envelope>"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterIDJson xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterIDJson></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesAfterIDJsonResponse"
         //use related webservice url here
         initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
@@ -289,7 +289,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     func GetMessagesAfterID(location: Int, from: String, count: Int, msgId: Int) {
         
         //copy related soap request structure here
-        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterID xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><index>\(index)</index><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterID></soap:Body></soap:Envelope>"
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GetMessagesAfterID xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><location>\(location)</location><from>\(from)</from><count>\(count)</count><msgId>\(msgId)</msgId></GetMessagesAfterID></soap:Body></soap:Envelope>"
         expectedElementName = "GetMessagesAfterIDResponse"
         //use related webservice url here
         initAndSendRequest(endpoint: _receiveEndpoint, message: soapMessage)
