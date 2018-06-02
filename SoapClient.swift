@@ -1627,7 +1627,7 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
 
     }
 
-    func GetMessagesReceptionss(msgId: Int64, fromRows: Int) {
+    func GetMessagesReceptions(msgId: Int64, fromRows: Int) {
 
         //copy related soap request structure here
 
