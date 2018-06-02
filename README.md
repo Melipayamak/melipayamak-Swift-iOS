@@ -31,7 +31,7 @@ let from: String = "5000..."
 var to: String = "09123456789"
 var text: String = "تست وب سرویس ملی پیامک"
 var isFlash: Bool = false
-var soapClient = SoapClient(user: username, pass: password)
+var soapClient = SoapClient().init(user: username, pass: password)
 soapClient.SendSimpleSMS2(to: to, from: from, msg: text, isFlash: isFlash)
 //یا برای ارسال به مجموعه ای از مخاطبین
 soapClient.SendSimpleSMS(array: [to1, to2], from: from, msg: text, isFlash: isFlash)
