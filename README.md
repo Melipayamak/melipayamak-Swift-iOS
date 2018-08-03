@@ -158,7 +158,7 @@ soapClient.AddMultipleSchedule(array: [to1, to2], from: from, arrayOfMsg: [msg1,
 
 #### ارسال سررسید
 ```js
-soapClient.AddNewUsance(to :to, from: from, msg: text, isFlash: isflash, ss: scheduleStartDateTime, cntrpt: countRepeat, se: scheduleEndDateTime, prdType: periodType)
+soapClient.AddUsance(to :to, from: from, msg: text, isFlash: isflash, ss: scheduleStartDateTime, rpt: repeat, se: scheduleEndDateTime)
 ```
 
 #### مشاهده وضعیت ارسال زماندار
