@@ -20,6 +20,7 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     let getCreditOp: String = "GetCredit"
     let getBasePriceOp: String = "GetBasePrice"
     let getUserNumbersOp: String = "GetUserNumbers"
+    let sendByBaseNumberOp: String = "BaseServiceNumber"
     
     let UserName: String
     let Password: String
@@ -49,6 +50,25 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     }
 
 
+    func SendByBaseNumber(text: String, to: String, bodyId: Int32)
+    {
+
+        let values = "username=\(self.UserName)&password=\(self.Password)&text=\(text)&to=\(to)&bodyId=\(bodyId)"
+        
+        let url = URL(string: endpoint + sendByBaseNumberOp)
+        
+        let theRequest = NSMutableURLRequest(url: url!)
+        
+        theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        theRequest.httpMethod = "POST"
+        theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+        
+        connection!.start()
+
+    }
+    
     func GetDelivery(Int32 recid)
     {
 
