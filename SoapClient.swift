@@ -168,6 +168,47 @@ class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     }
 
     
+    func SendByBaseNumber(text: [String], to: String, bodyId: Int32) {
+
+        //prepare arrays to use in soap request
+
+        let stringSplitter = "</string><string>"
+
+        let _text = "<string>" + text.joined(separator: stringSplitter) + "</string>"
+
+        let _func = "SendByBaseNumber"
+
+        //copy related soap request structure here
+
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(_func) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><text>\(_text)</text><to>\(to)</to><bodyId>\(bodyId)</bodyId></\(_func)></soap:Body></soap:Envelope>"
+
+        expectedElementName = SendByBaseNumber + "Response"
+
+        //use related webservice url here
+
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
+
+    }
+
+
+    func SendByBaseNumber2(text: String, to: String, bodyId: Int32) {
+
+        //prepare arrays to use in soap request
+
+        let _func = "SendByBaseNumber2"
+
+        //copy related soap request structure here
+
+        let soapMessage = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><\(_func) xmlns='http://tempuri.org/'><username>\(username)</username><password>\(password)</password><text>\(text)</text><to>\(to)</to><bodyId>\(bodyId)</bodyId></\(_func)></soap:Body></soap:Envelope>"
+
+        expectedElementName = SendByBaseNumber + "Response"
+
+        //use related webservice url here
+
+        initAndSendRequest(endpoint: _sendEndpoint, message: soapMessage)
+
+    }
+    
 
     func SendWithDomain(to: String, from: String, msg: String, isFlash: Bool, domain: String) {
 
