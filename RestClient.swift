@@ -69,7 +69,7 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
 
     }
     
-    func GetDelivery(Int32 recid)
+    func GetDelivery(recid: Int32)
     {
 
     let values = "username=\(self.UserName)&password=\(self.Password)&recID=\(recid)"
@@ -89,7 +89,7 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     }
     
     //
-    func GetMessages(Int location, String from, String index, Int count)
+    func GetMessages(location: Int, from: String, index: String, count: Int)
     {
 
     let values = "username=\(self.UserName)&password=\(self.Password)&Location=\(location)&From=\(from)&Index=\(index)&Count=\(count)"
