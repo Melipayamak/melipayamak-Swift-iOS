@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class soapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate,  XMLParserDelegate {
+class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate,  XMLParserDelegate {
     var mutableData:NSMutableData  = NSMutableData()
 
     var currentElementName:String = ""  //to match inner xml tag (response)
