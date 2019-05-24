@@ -178,6 +178,24 @@ soapClient.GetScheduleStatus(id: schId)
 soapClient.RemoveSchedule(id: schId)
 ```
 
+<div dir='rtl'>
+### وب سرویس پیامک صوتی  
+</div>
+
+#### تماس انبوه زماندار
+```js
+soapClient.SendBulkSpeechText(title: title, body: bd, receivers: recs, DateToSend: dt, repeatCount: count)
+```
+
+#### تماس انبوه زماندار با انتخاب فایل
+```js
+soapClient.SendBulkVoiceSMS(title: title, voiceFileId: id, receivers: recs, DateToSend: dt, repeatCount: count)
+```
+
+#### آپلود فایل صوتی
+```js
+soapClient.UploadVoiceFile(title: title, base64StringFile: file)
+```
 
 ####  ارسال پیامک همراه با تماس صوتی
 ```js
