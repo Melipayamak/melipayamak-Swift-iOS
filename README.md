@@ -28,10 +28,10 @@
 let username: String = "username"
 let password: String = "password"
 let from: String = "5000..."
-var to: String = "09123456789"
-var text: String = "تست وب سرویس ملی پیامک"
-var isFlash: Bool = false
-var soapClient = SoapClient(user: username, pass: password)
+let to: String = "09123456789"
+let text: String = "تست وب سرویس ملی پیامک"
+let isFlash: Bool = false
+let soapClient = SoapClient(user: username, pass: password)
 soapClient.SendSimpleSMS2(to: to, from: from, msg: text, isFlash: isFlash)
 //یا برای ارسال به مجموعه ای از مخاطبین
 soapClient.SendSimpleSMS(array: [to1, to2], from: from, msg: text, isFlash: isFlash)
@@ -44,8 +44,8 @@ soapClient.SendSimpleSMS(array: [to1, to2], from: from, msg: text, isFlash: isFl
 
 ```js
 // وب سرویس پیامک
-var restClient = RestClient(user: username, pass: password)
-var soapClient = SoapClient(user: username, pass: password)
+let restClient = RestClient(user: username, pass: password)
+let soapClient = SoapClient(user: username, pass: password)
 ```
 
 <div dir='rtl'>
