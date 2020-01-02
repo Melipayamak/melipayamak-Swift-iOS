@@ -1,15 +1,14 @@
 //
-//  RestClient.swift
-//  MeliPayamak
+//  RestClientAsync.swift
+//  Temperature Converter
 //
-//  Created by Amirhossein Mehrvarzi on 4/25/18.
-//  Copyright © 2018 MeliPayamak. All rights reserved.
+//  Created by Amirhossein Mehrvarzi on 9/27/19.
+//  Copyright © 2019 Melipayamak. All rights reserved.
 //
 
 import Foundation
 
-
-class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate
+class RestClientAsync : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate
 {
     var mutableData:NSMutableData  = NSMutableData()
     
@@ -35,16 +34,29 @@ class RestClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     
     func makeRequest(url: URL, values: String){
         
+       
         let theRequest = NSMutableURLRequest(url: url)
         
         theRequest.addValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         theRequest.httpMethod = "POST"
         theRequest.httpBody = values.data(using: String.Encoding.utf8, allowLossyConversion: false)
-        let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
         
-        connection!.start()
+        NSURLConnection.sendAsynchronousRequest(theRequest as URLRequest, queue: OperationQueue(), completionHandler: {response, data, error in
+            
+            if (error != nil) {
+                print("error: \(String(describing: error))")
+            }
+            else {
+                print("response is: \(String(describing: response))")
+            }
+
+        })
+        
+   
+        
     }
+
     
     
     func Send(to: String, from: String, message: String, isflash: Bool)

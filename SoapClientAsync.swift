@@ -2,15 +2,17 @@
 //  SoapClient.swift
 //  MeliPayamak
 //
-//  Created by Amirhossein Mehrvarzi on 4/25/18.
-//  Copyright © 2018 MeliPayamak. All rights reserved.
+//  Created by Amirhossein Mehrvarzi on 9/27/19.
+//  Copyright © 2019 MeliPayamak. All rights reserved.
 //
 
 import Foundation
 
 import UIKit
 
-class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate,  XMLParserDelegate {
+class SoapClientAsync : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate,  XMLParserDelegate {
+    
+    
     var mutableData:NSMutableData  = NSMutableData()
     
     var currentElementName:String = ""  //to match inner xml tag (response)
@@ -57,35 +59,27 @@ class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
     
     func initAndSendRequest(endpoint: String, message: String){
         
-        
-        
-        let url = URL(string: endpoint)
-        
-        
-        
-        let theRequest = NSMutableURLRequest(url: url!)
-        
-        
-        
-        let msgLength = message.characters.count
-        
-        
-        
-        theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        
-        theRequest.addValue(String(msgLength), forHTTPHeaderField: "Content-Length")
-        
-        theRequest.httpMethod = "POST"
-        
-        theRequest.httpBody = message.data(using: String.Encoding.utf8, allowLossyConversion: false) // or false
-        
-        
-        
-        let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
-        
-        
-        
-        connection!.start()
+        DispatchQueue.global(qos: .utility).async {
+            
+            let url = URL(string: endpoint)
+            
+            let theRequest = NSMutableURLRequest(url: url!)
+            
+            let msgLength = message.characters.count
+            
+            theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            
+            theRequest.addValue(String(msgLength), forHTTPHeaderField: "Content-Length")
+            
+            theRequest.httpMethod = "POST"
+            
+            theRequest.httpBody = message.data(using: String.Encoding.utf8, allowLossyConversion: false) // or false
+            
+            let connection = NSURLConnection(request: theRequest as URLRequest, delegate: self, startImmediately: true)
+            
+            connection!.start()
+            
+        }
         
     }
     
@@ -1547,7 +1541,7 @@ class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         expectedElementName = sendingElementName + "Response"
         
         initAndSendRequest(endpoint: _voiceEndpoint, message: soapMessage)
-    } 
+    }
     
     func SendSMSWithSpeechTextBySchduleDate(smsBody: String, speechBody: String, from: String, to: String, scheduleDate: Date) {
         
@@ -1558,7 +1552,7 @@ class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         expectedElementName = sendingElementName + "Response"
         
         initAndSendRequest(endpoint: _voiceEndpoint, message: soapMessage)
-    }  
+    }
     
     func UploadVoiceFile(title: String, base64StringFile: String) {
         
@@ -1569,7 +1563,7 @@ class SoapClient : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegat
         expectedElementName = sendingElementName + "Response"
         
         initAndSendRequest(endpoint: _voiceEndpoint, message: soapMessage)
-    }    
+    }
     
     // NSURLConnectionDelegate
     
